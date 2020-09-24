@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  node:
+    build: src/
+    tty: true
+
+    # Shared volume:
+    # volumes:
+    #   - ./src/:/home/proj/src
