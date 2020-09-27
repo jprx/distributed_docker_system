@@ -1,3 +1,4 @@
+#!/bin/bash
 # Start N nodes
 if [ -z $1 ]; then
     #echo "Defaulting to 5 nodes"
