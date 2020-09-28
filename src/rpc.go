@@ -10,12 +10,7 @@ import (
 	// Networking:
 	"net"
 	"net/rpc"
-
-	// Reading from stdin:
-	// "bufio"
 )
-
-import "rsc.io/quote"
 
 // In Go, RPCs need to be attached to objects
 // Define a struct to use as shared state, all RPCs are member functions of this struct
@@ -71,7 +66,6 @@ func Client() {
 
 func main () {
 	// Switch between server and client
-	fmt.Println(quote.Go())
 	isServer := flag.Bool("server", false, "are we a server?")
 	flag.Parse()
 

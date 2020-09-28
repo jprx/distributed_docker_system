@@ -4,6 +4,10 @@ services:
     build: src/
     tty: true
 
-    # Shared volume:
+    # Shared volume
+    # Uncommenting this causes the containers to share this directory
+    # You can update source and have it show up immediately within the containers
+    # For most use cases its better to take down the network and bring it back up (causing a rebuild)
+    # instead though.
     # volumes:
     #   - ./src/:/home/proj/src
