@@ -12,7 +12,9 @@ To attach to a running node, run `./attach N` for node index `N`. To exit a node
 ## Networking
 Nodes have hostnames following the pattern `{directory base name}_node_{i}`, where `directory_base_name` is the name of the folder you cloned this repo into (by default this is `distributed_docker_system`), and `i` is the node's index.
 
-So, to ping the 3rd node, you can run `ping distributed_docker_system_node_3`. (To get a bash shell in node 3, you can run `./attach.sh 3`)
+So, to ping the 3rd node, you can run `ping distributed_docker_system_node_3`. (To get a bash shell in node 3, you can run `./attach.sh 3`).
+
+If you clone this repo to a different folder, (for example, let's say you clone it into `repo_distributed`), you'll need to make sure to update line 63 of `src/rpc.go` with the new node naming convention (ex: `repo_distributed_node_I`), as the symbolic name for all the hosts will have changed. Application code is the only place you will need to manually update the names of nodes if you change the folder name- all the other infrastructure pulls the parent name as needed.
 
 ## Viewing Server Logs
 When the nodes come to life, they will perform the actions in `src/start_server.sh`. This is run under a `tmux` window, so after attaching to a node, you can then attach to the virtual terminal using `tmux a`. This will allow you to see the outputs of your build command and the running service. You can exit `tmux` using `control + b` then `d`. 
