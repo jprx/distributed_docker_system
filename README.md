@@ -5,7 +5,7 @@ Infrastructure for launching a distributed network of docker containers, each ru
 Docker
 
 # Launching Nodes
-To launch `N` servers, run `./start.sh N`. This will run `make` inside the src directory, and report any build errors to you.
+To launch `N` servers, run `./start.sh N`. This will run `make` inside the src directory to build your code, and report any build errors to you. The `src/start_server.sh` file is automatically run at startup for all nodes, you can use this to launch your code or automate any runtime tasks.
 
 To attach to a running node, run `./attach N` for node index `N`. To exit a node, just use `control + d`.
 
@@ -47,10 +47,12 @@ Ping distributed_docker_system_node_9           distributed_docker_system_node_9
 Ping distributed_docker_system_node_10          distributed_docker_system_node_10 not responding
 ```
 
+Notice that nodes 6-10 are not responding, this is because we only launched 5 nodes. (To launch 10, run with `./start.sh 10`).
+
 Here's what it looks like to attach to tmux:
-`root@d077b8f44d92:/home/proj/src# tmux a`
 
 ```
+root@d077b8f44d92:/home/proj/src# tmux a
 make: 'rpc' is up to date.
 Running as server...
 Received message: Hello, World!
