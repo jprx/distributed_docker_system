@@ -14,7 +14,9 @@ Nodes have hostnames following the pattern `$NODE_NAME_PREFIX_node_{i}`, where t
 
 So, to ping the 3rd node, you can run `ping $NODE_NAME_PREFIX_node_3`, where `$NODE_NAME_PREFIX` is what you've defined it to be. (To get a bash shell in node 3, you can run `./attach.sh 3`).
 
-To refer to a node hostname from within your project source, simply use the string `$NODE_NAME_PREFIX`. At build time (when you launch the nodes), the build system will automagically replace each instance of the string `$NODE_NAME_PREFIX` with the value in `config.sh` for you! (This means your project source cannot make use of a node environment variable of the same name).
+To refer to a node hostname from within your project source, simply refer to it with the string `$NODE_NAME_PREFIX_node_i` (where `i` is the index). At build time (when you launch the nodes), the build system will automagically replace each instance of the string `$NODE_NAME_PREFIX` with the value in `config.sh` for you, just as if it was a regular environment variable like in a shell script.
+
+No worrying about IP addresses, directory path names, or host name lookup- the infrastructure takes care of it for you.
 
 ## Viewing Server Logs
 When the nodes come to life, they will perform the actions in `src/start_server.sh`. This is run under a `tmux` window, so after attaching to a node, you can then attach to the virtual terminal using `tmux a`. This will allow you to see the outputs of your build command and the running service. You can exit `tmux` using `control + b` then `d`. 
