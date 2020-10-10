@@ -1,7 +1,10 @@
 version: "3.8"
 services:
   node:
-    build: src/
+    build:
+      context: ./src
+      args:
+        node_name_prefix: "${NODE_NAME_PREFIX}"
     tty: true
 
     # Shared volume

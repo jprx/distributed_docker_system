@@ -1,2 +1,3 @@
 #!/bin/bash
-docker-compose down
+source ./config.sh
+docker-compose -p $NODE_NAME_PREFIX down

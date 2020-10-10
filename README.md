@@ -9,12 +9,12 @@ To launch `N` servers, run `./start.sh N`. This will run `make` inside the src d
 
 To attach to a running node, run `./attach N` for node index `N`. To exit a node, just use `control + d`.
 
-## Networking
-Nodes have hostnames following the pattern `{directory base name}_node_{i}`, where `directory_base_name` is the name of the folder you cloned this repo into (by default this is `distributed_docker_system`), and `i` is the node's index.
+## Node Names & Networking
+Nodes have hostnames following the pattern `$NODE_NAME_PREFIX_node_{i}`, where the environment variable `$NODE_NAME_PREFIX` is defined in `config.sh`, and `i` is the node's index.
 
-So, to ping the 3rd node, you can run `ping distributed_docker_system_node_3`. (To get a bash shell in node 3, you can run `./attach.sh 3`).
+So, to ping the 3rd node, you can run `ping $NODE_NAME_PREFIX_node_3`, where `$NODE_NAME_PREFIX` is what you've defined it to be. (To get a bash shell in node 3, you can run `./attach.sh 3`).
 
-If you clone this repo to a different folder, (for example, let's say you clone it into `repo_distributed`), you'll need to make sure to update line 63 of `src/rpc.go` with the new node naming convention (ex: `repo_distributed_node_I`), as the symbolic name for all the hosts will have changed. Application code is the only place you will need to manually update the names of nodes if you change the folder name- all the other infrastructure pulls the parent name as needed.
+To refer to a node hostname from within your project source, simply use the string `$NODE_NAME_PREFIX`. At build time (when you launch the nodes), the build system will automagically replace each instance of the string `$NODE_NAME_PREFIX` with the value in `config.sh` for you! (This means your project source cannot make use of a node environment variable of the same name).
 
 ## Viewing Server Logs
 When the nodes come to life, they will perform the actions in `src/start_server.sh`. This is run under a `tmux` window, so after attaching to a node, you can then attach to the virtual terminal using `tmux a`. This will allow you to see the outputs of your build command and the running service. You can exit `tmux` using `control + b` then `d`. 
@@ -59,6 +59,3 @@ make: 'rpc' is up to date.
 Running as server...
 Received message: Hello, World!
 ```
-
-# Caveats
-The top-level directory cannot be named starting with an underscore (however, underscores within the name are totally cool).

@@ -60,7 +60,7 @@ func PingServer(name string) {
 // that DIRECTORY_NAME)
 func Client() {
 	for i := 1 ; i <= 10 ; i++ {
-		PingServer(fmt.Sprintf("distributed_docker_system_node_%d", i))
+		PingServer(fmt.Sprintf("$NODE_NAME_PREFIX_node_%d", i))
 	}
 }
 
