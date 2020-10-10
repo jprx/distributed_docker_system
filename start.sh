@@ -11,5 +11,5 @@ fi
 
 echo "Starting" $NUM_NODES "nodes"
 
-docker-compose -p $NODE_NAME_PREFIX down
+docker-compose -p $NODE_NAME_PREFIX --env-file ./config.sh down
 docker-compose -p $NODE_NAME_PREFIX --env-file ./config.sh up -d --build --scale node=$NUM_NODES
