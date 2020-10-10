@@ -10,7 +10,7 @@ To launch `N` servers, run `./start.sh N`. This will run `make` inside the src d
 To attach to a running node, run `./attach N` for node index `N`. To exit a node, just use `control + d`.
 
 ## Node Names & Networking
-Nodes have hostnames following the pattern `$NODE_NAME_PREFIX_node_{i}`, where the environment variable `$NODE_NAME_PREFIX` is defined in `config.sh`, and `i` is the node's index.
+Nodes have hostnames following the pattern `$NODE_NAME_PREFIX_node_i`, where the environment variable `$NODE_NAME_PREFIX` is defined in `config.sh`, and `i` is the node's index.
 
 So, to ping the 3rd node, you can run `ping $NODE_NAME_PREFIX_node_3`, where `$NODE_NAME_PREFIX` is what you've defined it to be. (To get a bash shell in node 3, you can run `./attach.sh 3`).
 
